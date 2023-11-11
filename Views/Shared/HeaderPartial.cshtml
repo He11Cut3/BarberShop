@@ -1,0 +1,64 @@
+﻿<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+<div id='preloader'>
+    <div class='loader'>
+        <img src="~/img/loading.gif" width="80" alt="">
+    </div>
+</div><!-- Preloader -->
+
+<header id="header" class="header-section">
+    <div class="container">
+        <nav class="navbar ">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/img/logo.png" alt="Barbershop"></a>
+            <div class="d-flex menu-wrap align-items-center">
+                <div id="mainmenu" class="mainmenu">
+                    <ul class="nav">
+                        <li>
+                            <a data-scroll class="nav-link active" asp-controller="Home" asp-action="Index">Главная страница<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li>
+                            <a asp-controller="Stock" asp-action="Index">Акции</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Service" asp-action="Index">Парикмахеры</a>
+                        </li>
+                        
+                        <li><a asp-controller="Home" asp-action="Contact">Контакты</a></li>
+
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Logout">Привет, @User.Identity.Name, Выход</a>
+                                <ul>
+                                    <li><a asp-controller="Stock" asp-action="Create">Создать Пост/Акция</a></li>
+                                    <li><a asp-controller="Service" asp-action="Create">Создать профиль барбера</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li>
+                                <a asp-controller="Account" asp-action="Login">Вход</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                            </li>
+
+
+
+                        }
+                    </ul>
+                </div>
+                <div class="header-btn">
+                    <ul class="nav">
+                            
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</header> <!--.header-section -->

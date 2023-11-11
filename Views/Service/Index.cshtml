@@ -1,0 +1,28 @@
+﻿@model List<BarberService>
+
+<section id="team" class="team_section bd-bottom padding">
+    <div class="container">
+        <ul class="team_members row">
+
+            @foreach (var serv in Model)
+            {
+                <li class="col-lg-3 col-md-6 sm-padding wow fadeInUp" data-wow-delay="200ms">
+                    <div class="team_member">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(serv.BarberServiceImage)" alt="Team Member">
+                        <p>&nbsp;</p>
+                            <h3>@serv.BarberServiceFIO</h3>
+                            <p>@Html.Raw(serv.BarberServiceDescription)</p>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Service" asp-action="Delete" asp-route-id="@serv.BarberServiceID">Удалить</a>
+                        }
+                    </div>
+                </li>
+            }
+
+
+            
+            
+        </ul><!-- /.team_members -->
+    </div>
+</section><!-- /.team_section -->

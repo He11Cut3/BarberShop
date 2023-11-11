@@ -1,0 +1,44 @@
+﻿@model List<BarberStock>
+
+<section class="blog-section padding">
+    <div class="container">
+        <div class="blog-wrap row">
+            <div class="col-lg-8 sm-padding">
+                <div class="row blog-classic">
+
+                    @foreach (var task in Model.OrderByDescending(t => t.BarberStockID))
+                    {
+                        <div class="col-lg-12">
+                            <div class="blog-item">
+                                <div class="blog-thumb">
+                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(task.BarberStockImage)" height="400" width="100" alt="post">
+                                </div>
+                                <div class="blog-content">
+                                    <h3><a href="#">@task.BarberStockName</a></h3>
+                                    <p>@Html.Raw(task.BarberStockDescription)</p>
+                                </div>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a asp-controller="Stock" asp-action="Delete" asp-route-id="@task.BarberStockID">Удалить</a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div><!--/.col-lg-8-->
+            <div class="col-lg-4 sm-padding">
+                <div class="sidebar-wrap">
+                    <div class="widget-content">
+                        <h4>Последние посты</h4>
+                        <ul class="thumb-post">
+                            @foreach (var tasks in Model.OrderByDescending(t => t.BarberStockID).Take(3))
+                            {
+                                <li><img src="data:image/jpeg;base64,@Convert.ToBase64String(tasks.BarberStockImage)" alt="post"><a >@tasks.BarberStockName</a></li>
+                            }
+                        </ul>
+                    </div><!--tag clouds-->
+                </div><!--/.sidebar-wrap-->
+            </div><!--/.col-lg-4-->
+        </div><!--/.blog-wrap-->
+    </div>
+</section><!--/.blog-section-->

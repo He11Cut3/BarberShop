@@ -1,0 +1,37 @@
+﻿@model BarberService
+
+<section class="contact-section padding">
+    <div class="contact-wrap d-flex align-items-center row">
+        <div class="col-lg-6 sm-padding">
+            <div class="contact-form">
+                <form asp-controller="Service" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    
+                    <div class="form-group">
+                        <label asp-for="BarberServiceFIO">ФИО</label>
+                        <input asp-for="BarberServiceFIO" class="form-control" />
+                        <span asp-validation-for="BarberServiceFIO" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BarberServiceDescription">Описание</label>
+                        <textarea asp-for="BarberServiceDescription" class="form-control"></textarea>
+                        <span asp-validation-for="BarberServiceDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Фотография барбера</label>
+                        <div class="input-group">
+                            <input type="file" asp-for="FilesForm" class="form-control" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="default_btn">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+<script>
+
+    CKEDITOR.replace('BarberServiceDescription');
+</script>
